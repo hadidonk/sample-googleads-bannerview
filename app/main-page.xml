@@ -1,0 +1,10 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
+	<DockLayout>
+		<Placeholder dock="bottom" height="40" creatingView="creatingView" id="bannerView"/>
+		<StackLayout dock="top">
+			<Label text="Tap the button" class="title"/>
+			<Button text="TAP" tap="{{ tapAction }}" />
+			<Label text="{{ message }}" class="message" textWrap="true"/>
+		</StackLayout>		
+	</DockLayout>
+</Page>
