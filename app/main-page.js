@@ -17,6 +17,7 @@ function pageLoaded(args) {
         request.testDevices = [kGADSimulatorID];
         bannerView.loadRequest(request);
     }
+    else {}
 }
 
 function creatingView(args) {
@@ -24,27 +25,30 @@ function creatingView(args) {
         bannerView = GADBannerView.alloc().initWithAdSize(kGADAdSizeSmartBannerPortrait);
         args.view = bannerView;
     }
+    else {}
 }
 
-var GADBannerViewDelegateImpl = (function (_super) {
-    __extends(GADBannerViewDelegateImpl, _super);
-    function GADBannerViewDelegateImpl() {
-        _super.apply(this, arguments);
-    }
-    GADBannerViewDelegateImpl.new = function () {
-        return _super.new.call(this);
-    };
-    GADBannerViewDelegateImpl.prototype.initWithOwner = function (owner) {
-        this._owner = owner;
-        return this;
-    };
-    GADBannerViewDelegateImpl.prototype.adViewWillLeaveApplication = function (bannerView) {
-    	// do sth as the user is leaving the app, because of a clicked ad
-        console.log("Leaving the app, bye bye!");
-    };
-    GADBannerViewDelegateImpl.ObjCProtocols = [GADBannerViewDelegate];
-    return GADBannerViewDelegateImpl;
-})(NSObject);
+if(platformModule.device.os == "iOS") {
+    var GADBannerViewDelegateImpl = (function (_super) {
+        __extends(GADBannerViewDelegateImpl, _super);
+        function GADBannerViewDelegateImpl() {
+            _super.apply(this, arguments);
+        }
+        GADBannerViewDelegateImpl.new = function () {
+            return _super.new.call(this);
+        };
+        GADBannerViewDelegateImpl.prototype.initWithOwner = function (owner) {
+            this._owner = owner;
+            return this;
+        };
+        GADBannerViewDelegateImpl.prototype.adViewWillLeaveApplication = function (bannerView) {
+            // do sth as the user is leaving the app, because of a clicked ad
+            console.log("Leaving the app, bye bye!");
+        };
+        GADBannerViewDelegateImpl.ObjCProtocols = [GADBannerViewDelegate];
+        return GADBannerViewDelegateImpl;
+    })(NSObject);
+}
 
 exports.pageLoaded = pageLoaded;
 exports.creatingView = creatingView;
