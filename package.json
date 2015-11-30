@@ -3,10 +3,13 @@
 		"id": "org.nativescript.samplegoogleadsbannerview",
 		"tns-ios": {
 			"version": "1.5.0"
+		},
+		"tns-android": {
+			"version": "1.5.0"
 		}
 	},
 	"dependencies": {
-		"nativescript-google-mobile-ads-sdk": "^1.0.1",
+		"nativescript-google-mobile-ads-sdk": "^1.0.3",
 		"tns-core-modules": "1.5.0"
 	}
 }
