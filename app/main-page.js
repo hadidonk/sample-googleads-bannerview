@@ -21,14 +21,20 @@ function pageLoaded(args) {
     else {
 		bannerView = placeholder.android;
 		bannerView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+		
+		var MyAdListener = com.google.android.gms.ads.AdListener.extend(
+		{
+			onAdLeftApplication: function() {
+				// do sth as the user is leaving the app, because of a clicked ad
+				console.log("Leaving the app, bye bye!");
+			}
+		});		
+		var listener = new MyAdListener();		
+		bannerView.setAdListener(listener);
+		
 		var adRequest = new com.google.android.gms.ads.AdRequest.Builder();
 		adRequest.addTestDevice(com.google.android.gms.ads.AdRequest.DEVICE_ID_EMULATOR);
 		var requestBuild = adRequest.build();
-		console.log("SSSSSSSSSSSSSSS");		
-		console.log(bannerView.adUnitId);
-		console.log(bannerView.getClass().getCanonicalName());
-		console.log(bannerView.loadAd);
-		console.log("EEEEEEEEEEEEEEE")
 		bannerView.loadAd(requestBuild);
 	}
 }
