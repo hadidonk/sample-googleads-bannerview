@@ -1,8 +1,9 @@
 var vmModule = require("./main-view-model");
 var platformModule = require("platform");
+var page;
 
 function pageLoaded(args) {
-    var page = args.object;
+    page = args.object;
     page.bindingContext = vmModule.mainViewModel;
 
     var placeholder = page.getViewById("bannerView");
@@ -17,7 +18,19 @@ function pageLoaded(args) {
         request.testDevices = [kGADSimulatorID];
         bannerView.loadRequest(request);
     }
-    else {}
+    else {
+		bannerView = placeholder.android;
+		bannerView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+		var adRequest = new com.google.android.gms.ads.AdRequest.Builder();
+		adRequest.addTestDevice(com.google.android.gms.ads.AdRequest.DEVICE_ID_EMULATOR);
+		var requestBuild = adRequest.build();
+		console.log("SSSSSSSSSSSSSSS");		
+		console.log(bannerView.adUnitId);
+		console.log(bannerView.getClass().getCanonicalName());
+		console.log(bannerView.loadAd);
+		console.log("EEEEEEEEEEEEEEE")
+		bannerView.loadAd(requestBuild);
+	}
 }
 
 function creatingView(args) {
@@ -25,7 +38,11 @@ function creatingView(args) {
         bannerView = GADBannerView.alloc().initWithAdSize(kGADAdSizeSmartBannerPortrait);
         args.view = bannerView;
     }
-    else {}
+    else {
+		bannerView = new com.google.android.gms.ads.AdView(args.object._context);
+		bannerView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
+		args.view = bannerView;
+	}
 }
 
 if(platformModule.device.os == "iOS") {
