@@ -1,6 +1,5 @@
 var vmModule = require("./main-view-model");
 var platformModule = require("platform");
-var page;
 
 function pageLoaded(args) {
     page = args.object;
