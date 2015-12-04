@@ -2,7 +2,7 @@ var vmModule = require("./main-view-model");
 var platformModule = require("platform");
 
 function pageLoaded(args) {
-    page = args.object;
+    var page = args.object;
     page.bindingContext = vmModule.mainViewModel;
 
     var placeholder = page.getViewById("bannerView");
@@ -44,7 +44,7 @@ function creatingView(args) {
         args.view = bannerView;
     }
     else {
-		bannerView = new com.google.android.gms.ads.AdView(args.object._context);
+		var bannerView = new com.google.android.gms.ads.AdView(args.object._context);
 		bannerView.setAdSize(com.google.android.gms.ads.AdSize.SMART_BANNER);
 		args.view = bannerView;
 	}
