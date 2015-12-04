@@ -11,7 +11,7 @@ function pageLoaded(args) {
     if(platformModule.device.os == "iOS") {
         bannerView = placeholder.ios;
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716";
-        bannerView.strongDelegateRef = bannerView.delegate = GADBannerViewDelegateImpl.new().initWithOwner(this);
+        bannerView.strongDelegateRef = bannerView.delegate = GADBannerViewDelegateImpl.new();
         bannerView.rootViewController = page.ios;
         var request = GADRequest.request();
         request.testDevices = [kGADSimulatorID];
@@ -58,10 +58,6 @@ if(platformModule.device.os == "iOS") {
         }
         GADBannerViewDelegateImpl.new = function () {
             return _super.new.call(this);
-        };
-        GADBannerViewDelegateImpl.prototype.initWithOwner = function (owner) {
-            this._owner = owner;
-            return this;
         };
         GADBannerViewDelegateImpl.prototype.adViewWillLeaveApplication = function (bannerView) {
             // do sth as the user is leaving the app, because of a clicked ad
