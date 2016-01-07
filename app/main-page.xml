@@ -1,4 +1,4 @@
-<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
 	<DockLayout>
 		<Placeholder dock="bottom" creatingView="creatingView" id="bannerView"/>
 		<StackLayout dock="top">
